@@ -1,68 +1,63 @@
 const baseUrl = "http://localhost:8080/transfer";
 
 function depositWithdraw() {
-    let acc = document.getElementById("dwAcc").value;
-    let amt = document.getElementById("dwAmt").value;
-    let type = document.getElementById("dwType").value;
+    let acc = dwAcc.value;
+    let amt = dwAmt.value;
+    let type = dwType.value;
 
-    fetch(baseUrl + "/depositwithdraw/" + acc, {
+    fetch(`${baseUrl}/depositwithdraw/${acc}`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            balance: amt,
-            check: type
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ balance: amt, check: type })
     })
     .then(res => {
-        if (!res.ok) {
-            return res.text().then(msg => { throw msg; });
-        }
+        if (!res.ok) return res.text().then(msg => { throw msg });
         return res.text();
     })
     .then(() => {
-        document.getElementById("dwResult").innerText = "✅ Transaction Successful";
+        dwResult.style.color = "green";
+        dwResult.innerText = "✅ Transaction completed successfully";
     })
     .catch(err => {
-        document.getElementById("dwResult").innerText = "❌ " + err;
+        dwResult.style.color = "red";
+        dwResult.innerText = "❌ " + err;
     });
 }
 
 function checkBalance() {
-    let acc = document.getElementById("balAcc").value;
+    let acc = balAcc.value;
 
-    fetch(baseUrl + "/checkbalance/" + acc)
+    fetch(`${baseUrl}/checkbalance/${acc}`)
     .then(res => {
-        if (!res.ok) {
-            return res.text().then(msg => { throw msg; });
-        }
+        if (!res.ok) return res.text().then(msg => { throw msg });
         return res.text();
     })
     .then(data => {
-        document.getElementById("balResult").innerText = "Balance: ₹ " + data;
+        balResult.style.color = "green";
+        balResult.innerText = `💰 Available Balance: ₹ ${data}`;
     })
     .catch(err => {
-        document.getElementById("balResult").innerText = "❌ " + err;
+        balResult.style.color = "red";
+        balResult.innerText = "❌ " + err;
     });
 }
 
 function transfer() {
-    let a1 = document.getElementById("fromAcc").value;
-    let a2 = document.getElementById("toAcc").value;
-    let amt = document.getElementById("trAmt").value;
+    let a1 = fromAcc.value;
+    let a2 = toAcc.value;
+    let amt = trAmt.value;
 
-    fetch(baseUrl + "/transfer/" + a1 + "/" + a2 + "/" + amt)
+    fetch(`${baseUrl}/transfer/${a1}/${a2}/${amt}`)
     .then(res => {
-        if (!res.ok) {
-            return res.text().then(msg => { throw msg; });
-        }
+        if (!res.ok) return res.text().then(msg => { throw msg });
         return res.text();
     })
     .then(() => {
-        document.getElementById("trResult").innerText = "✅ Transfer Successful";
+        trResult.style.color = "green";
+        trResult.innerText = "✅ Amount transferred successfully";
     })
     .catch(err => {
-        document.getElementById("trResult").innerText = "❌ " + err;
+        trResult.style.color = "red";
+        trResult.innerText = "❌ " + err;
     });
 }

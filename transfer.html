@@ -1,40 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Bank Transfer System</title>
-    <link rel="stylesheet" href="transfer.css">
+    <meta charset="UTF-8">
+    <title>SBI – Transfer System</title>
+
+   
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/transfer.css">
 </head>
 <body>
 
-<h1>🏦 Banking System</h1>
+<header class="header">
+    <h1><i class="fa-solid fa-building-columns"></i> SBI Banking System</h1>
+    <p>Secure • Fast • Reliable Transactions</p>
+</header>
 
-<div class="box">
-    <h2>Deposit / Withdraw</h2>
-    <input type="number" id="dwAcc" placeholder="Account Number">
-    <input type="number" id="dwAmt" placeholder="Amount">
-    <select id="dwType">
-        <option value="deposit">Deposit</option>
-        <option value="withdraw">Withdraw</option>
-    </select>
-    <button onclick="depositWithdraw()">Submit</button>
-    <p id="dwResult"></p>
+<div class="container">
+
+    <!-- D/W-->
+    <div class="box">
+        <h2><i class="fa-solid fa-wallet"></i> Deposit / Withdraw</h2>
+
+        <input type="number" id="dwAcc" placeholder="Account Number">
+        <input type="number" id="dwAmt" placeholder="Amount (₹)">
+        <select id="dwType">
+            <option value="deposit">Deposit</option>
+            <option value="withdraw">Withdraw</option>
+        </select>
+
+        <button onclick="depositWithdraw()">Submit</button>
+        <p id="dwResult" class="result"></p>
+    </div>
+
+    <!--Bal-->
+    <div class="box">
+        <h2><i class="fa-solid fa-scale-balanced"></i> Check Balance</h2>
+
+        <input type="number" id="balAcc" placeholder="Account Number">
+        <button onclick="checkBalance()">Check Balance</button>
+        <p id="balResult" class="result"></p>
+    </div>
+
+    <!--Tran-->
+    <div class="box">
+        <h2><i class="fa-solid fa-money-bill-transfer"></i> Transfer Money</h2>
+
+        <input type="number" id="fromAcc" placeholder="From Account">
+        <input type="number" id="toAcc" placeholder="To Account">
+        <input type="number" id="trAmt" placeholder="Amount (₹)">
+
+        <button onclick="transfer()">Transfer</button>
+        <p id="trResult" class="result"></p>
+    </div>
+
 </div>
 
-<div class="box">
-    <h2>Check Balance</h2>
-    <input type="number" id="balAcc" placeholder="Account Number">
-    <button onclick="checkBalance()">Check</button>
-    <p id="balResult"></p>
-</div>
-
-<div class="box">
-    <h2>Transfer Money</h2>
-    <input type="number" id="fromAcc" placeholder="From Account">
-    <input type="number" id="toAcc" placeholder="To Account">
-    <input type="number" id="trAmt" placeholder="Amount">
-    <button onclick="transfer()">Transfer</button>
-    <p id="trResult"></p>
-</div>
+<footer>
+    © State Bank of India – Secure Transaction Portal
+</footer>
 
 <script src="transfer.js"></script>
 </body>
