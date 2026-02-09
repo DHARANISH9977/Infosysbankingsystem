@@ -1,6 +1,7 @@
 const baseUrl = "http://localhost:8080/transfer";
 
 function depositWithdraw() {
+
     let acc = dwAcc.value;
     let amt = dwAmt.value;
     let type = dwType.value;
@@ -10,13 +11,14 @@ function depositWithdraw() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ balance: amt, check: type })
     })
-    .then(res => {
-        if (!res.ok) return res.text().then(msg => { throw msg });
-        return res.text();
+    .then(async res => {
+        let msg = await res.text();
+        if (!res.ok) throw msg;
+        return msg;
     })
-    .then(() => {
+    .then(msg => {
         dwResult.style.color = "green";
-        dwResult.innerText = "✅ Transaction completed successfully";
+        dwResult.innerText = "✅ " + msg;
     })
     .catch(err => {
         dwResult.style.color = "red";
@@ -24,13 +26,16 @@ function depositWithdraw() {
     });
 }
 
+
 function checkBalance() {
+
     let acc = balAcc.value;
 
     fetch(`${baseUrl}/checkbalance/${acc}`)
-    .then(res => {
-        if (!res.ok) return res.text().then(msg => { throw msg });
-        return res.text();
+    .then(async res => {
+        let msg = await res.text();
+        if (!res.ok) throw msg;
+        return msg;
     })
     .then(data => {
         balResult.style.color = "green";
@@ -42,19 +47,22 @@ function checkBalance() {
     });
 }
 
+
 function transfer() {
+
     let a1 = fromAcc.value;
     let a2 = toAcc.value;
     let amt = trAmt.value;
 
     fetch(`${baseUrl}/transfer/${a1}/${a2}/${amt}`)
-    .then(res => {
-        if (!res.ok) return res.text().then(msg => { throw msg });
-        return res.text();
+    .then(async res => {
+        let msg = await res.text();
+        if (!res.ok) throw msg;
+        return msg;
     })
-    .then(() => {
+    .then(msg => {
         trResult.style.color = "green";
-        trResult.innerText = "✅ Amount transferred successfully";
+        trResult.innerText = "✅ " + msg;
     })
     .catch(err => {
         trResult.style.color = "red";

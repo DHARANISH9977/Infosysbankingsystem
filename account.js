@@ -36,9 +36,6 @@ function addRow(a) {
         <td>${a.bankaddress}</td>
         <td>${a.balance}</td>
         <td>${a.email}</td>
-        <td>
-            <button onclick="deleteAcc(${a.accid})">Delete</button>
-        </td>
     </tr>`;
 
     document.getElementById("tableBody").innerHTML += row;

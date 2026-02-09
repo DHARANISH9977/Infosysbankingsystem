@@ -7,39 +7,30 @@
 </head>
 <body>
 
-<div class="container">
-    <h2>Customer Registration</h2>
+<h1>Customer Management</h1>
 
-    <input type="text" id="name" placeholder="Name">
-    <input type="email" id="email" placeholder="Email">
-    <input type="text" id="phone" placeholder="Phone Number">
-    <input type="text" id="address" placeholder="Address">
-    <input type="text" id="pincode" placeholder="Pincode">
-    <input type="number" id="accno" placeholder="Account Number">
+<div class="card">
+    <h2>Add Customer</h2>
+
+    <input id="name" placeholder="Customer Name">
+    <input id="email" placeholder="Email">
+    <input id="phone" placeholder="Phone Number">
+    <input id="address" placeholder="Address">
+    <input id="pincode" placeholder="Pincode">
+
+    <hr>
+
+    <h3>Account Verification</h3>
+    <input id="accno" placeholder="Account Number">
 
     <button onclick="addCustomer()">Add Customer</button>
-
     <p id="msg"></p>
 </div>
 
-<hr>
-
-<div class="container">
-    <h2>Get Customer Details</h2>
-    <input type="number" id="cid" placeholder="Customer ID">
-    <button onclick="getCustomer()">Get Details</button>
-
-    <pre id="output"></pre>
-</div>
-
-<hr>
-
-<div class="container">
-    <h2>Delete Customer</h2>
-    <input type="number" id="delid" placeholder="Customer ID">
-    <button onclick="deleteCustomer()">Delete</button>
-
-    <p id="delmsg"></p>
+<div class="card">
+    <h2>All Customers</h2>
+    <button onclick="loadCustomers()">Show All</button>
+    <div id="customerList"></div>
 </div>
 
 <script src="customer.js"></script>

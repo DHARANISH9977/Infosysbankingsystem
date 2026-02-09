@@ -14,10 +14,24 @@ function loadAccounts() {
                     <td>${a.bankaddress}</td>
                     <td>${a.balance}</td>
                     <td>${a.email}</td>
+                   <td>
+            <button onclick="deleteAcc(${a.accid})">Delete</button>
+         </td>
                 </tr>`;
             });
             document.getElementById("tableBody").innerHTML = rows;
         });
+}
+
+function deleteAcc(id) {
+    fetch(baseUrl + "/delete/" + id, {
+        method: "DELETE"
+    })
+    .then(res => res.text())
+    .then(msg => {
+        alert(msg);
+         loadAccounts();
+    });
 }
 
 // AUTO LOAD
